@@ -4,7 +4,7 @@
     "role": "Social Monitor",
     "status": "Idle",
     "current_assignment": "Scan complete. No new leads found.",
-    "last_updated": "2026-03-28T16:18:11.859752"
+    "last_updated": "2026-03-28T16:29:44.940373"
   },
   {
     "name": "The Chief Editor",
@@ -18,13 +18,13 @@
     "role": "Journalist",
     "status": "Thinking",
     "current_assignment": "Formulating investigation strategy...",
-    "last_updated": "2026-03-28T16:18:11.860960"
+    "last_updated": "2026-03-28T16:29:44.941420"
   },
   {
     "name": "The Senior Reporter",
     "role": "Journalist",
     "status": "Idle",
     "current_assignment": "Waiting for new assignments...",
-    "last_updated": "2026-03-28T16:18:11.861362"
+    "last_updated": "2026-03-28T16:29:44.941750"
   }
 ]
