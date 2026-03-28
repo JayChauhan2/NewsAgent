@@ -254,5 +254,29 @@
     "category": "Politics",
     "status": "pending",
     "created_at": "2026-03-28 16:12:57"
+  },
+  {
+    "id": "ticket_1774729091_0",
+    "title": "The Anatomy of a Scam",
+    "source_link": "https://www.reddit.com/r/finance/comments/1s4a9jd/the_anatomy_of_a_scam/",
+    "category": "Business",
+    "status": "pending",
+    "created_at": "2026-03-28 16:18:11"
+  },
+  {
+    "id": "ticket_1774729091_1",
+    "title": "How a Dirty Money Trail From Venezuela to Iran Brought Down a Swiss Bank",
+    "source_link": "https://www.reddit.com/r/finance/comments/1s35js8/how_a_dirty_money_trail_from_venezuela_to_iran/",
+    "category": "Business",
+    "status": "pending",
+    "created_at": "2026-03-28 16:18:11"
+  },
+  {
+    "id": "ticket_1774729091_2",
+    "title": "Moronic Monday - March 23, 2026 - Your Weekly Questions Thread",
+    "source_link": "https://www.reddit.com/r/finance/comments/1s18u9h/moronic_monday_march_23_2026_your_weekly/",
+    "category": "Business",
+    "status": "pending",
+    "created_at": "2026-03-28 16:18:11"
   }
 ]

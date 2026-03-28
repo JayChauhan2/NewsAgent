@@ -9,10 +9,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 app = FastAPI()
 
-# Enable CORS for React frontend
+# Enable CORS for React frontend (allow all in development/deployment for simplicity)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"], # Vite default port
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -69,23 +69,39 @@ def get_agent_status():
     }
     return JSONResponse(content=content, headers=headers)
 
-import threading
-import time
+from fastapi import HTTPException, Header
+from backend import run_news_cycle
 from backend.writer import publisher
 
-def run_publisher_loop():
-    while True:
-        try:
-            publisher.publish_pending_dossiers()
-        except Exception as e:
-            print(f"Publisher Loop Error: {e}")
-        time.sleep(10)
+@app.get("/trigger-publish")
+def trigger_publish(x_cron_secret: str = Header(None)):
+    """
+    Endpoint for Vercel Cron to trigger the publisher loop.
+    """
+    secret = os.getenv("CRON_SECRET")
+    if secret and x_cron_secret != secret:
+        raise HTTPException(status_code=403, detail="Unauthorized")
+        
+    try:
+        publisher.publish_pending_dossiers()
+        return {"status": "success", "message": "Publisher run completed"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
-@app.on_event("startup")
-def startup_event():
-    # Start publisher in background thread
-    t = threading.Thread(target=run_publisher_loop, daemon=True)
-    t.start()
+@app.get("/trigger-cycle")
+def trigger_cycle(x_cron_secret: str = Header(None)):
+    """
+    Endpoint for Vercel Cron to trigger the news cycle.
+    """
+    secret = os.getenv("CRON_SECRET")
+    if secret and x_cron_secret != secret:
+        raise HTTPException(status_code=403, detail="Unauthorized")
+        
+    try:
+        run_news_cycle.run_cycle()
+        return {"status": "success", "message": "News cycle completed"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 @app.delete("/articles/{article_id}")
 def delete_article(article_id: str):

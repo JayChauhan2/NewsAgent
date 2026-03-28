@@ -1,0 +1,15 @@
+requests
+feedparser
+schedule
+sgmllib3k
+scikit-learn
+openai
+python-dotenv
+tavily-python
+beautifulsoup4
+fastapi
+uvicorn
+pydantic>=2.0.0
+ddgs
+selenium
+webdriver-manager
