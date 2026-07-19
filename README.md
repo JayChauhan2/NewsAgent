@@ -8,10 +8,46 @@
 
 ## Multi-Agent Architecture Note
 
+This project was originally designed around an autonomous **Multi-Agent Orchestration Architecture** where separate specialized agents coordinated in a cyclic loop (`backend/run_news_cycle.py`) to process news stories.
+
+### The Original Agent Setup
+
+```mermaid
+graph TD
+    A[Watchtower Agent] -->|Spots Trends & Saves Leads| B[Editor Agent]
+    B -->|Clusters & Assigns Tickets| C[Journalist Agent]
+    C -->|Investigates & Creates Dossiers| D[Writer Agent]
+    D -->|Drafts, Reviews & Publishes| E[Public Feed / UI]
+```
+
+1. **Watchtower Agent (`backend/watchtower/`)**
+   - **Role**: Continuous trend-spotter and social listener.
+   - **Mechanism**: Scrapes platforms like X (Twitter) and Reddit using custom monitoring scripts (`x_monitor.py`, `reddit_scraper.py`), identifies viral topics, uses an LLM to classify and filter categories, and saves raw signals to `assignments.json`.
+
+2. **Editor Agent (`backend/editor/`)**
+   - **Role**: Quality gatekeeper and assignment coordinator.
+   - **Mechanism**: Handles clustering/grouping of raw news leads (`clustering.py`), scores incoming signals (`scoring.py`), and delegates research tickets using assignment rules (`assigner.py`) to prevent redundant research.
+
+3. **Journalist Agent (`backend/journalist/`)**
+   - **Role**: Deep investigator.
+   - **Mechanism**: Reads active assignments, plans a research strategy (`dossier.py`), performs web search queries and page scraping (`search.py`, `scraper.py`) for primary sources, validates facts, gathers quotes, and outputs a structured **Research Dossier** file.
+
+4. **Writer Agent (`backend/writer/`)**
+   - **Role**: Publisher and content formatter.
+   - **Mechanism**: Consumes the Journalist's Research Dossier, determines a narrative angle, drafts articles in distinct tones (e.g. witty, serious), formats the content to markdown, passes drafts through a self-review stage (`reviewer.py`), and publishes updates to `articles.json` via `publisher.py`.
+
+### Why it was Unsuccessful
+
+While the conceptual flow looks neat, implementing this system solo ran into several roadblocks that made it impractical:
+- **High Latency & Blocking Calls**: Running multiple sequential LLM evaluation rounds (thinking steps, fact-checking, self-reviewing) per story resulted in cycle times of several minutes per article.
+- **Runaway API Costs**: The deep research steps and multi-agent coordination loops consumed an excessive number of input/output tokens, making it unsustainable for standard API budgets.
+- **State Synchronization Issues**: Orchestrating file-based memory queues (`assignments.json`, `dossiers/*.json`, `articles.json`) across decoupled agent steps led to race conditions, duplicate processing, and edge-case exceptions.
+- **Pipeline Fragility**: A single failure in search APIs or web scraping in the Journalist agent halted the downstream writing and formatting pipeline.
+
+As a result, the code falls back on a simpler, more deterministic pipeline.
+
 > [!NOTE]
-> I originally experimented with a **multi-agent orchestration architecture** to fetch, rank, verify, and summarize articles. However, this decentralized approach was slow, expensive, and ultimately unsuccessful. Currently, the project falls back on a simpler, more deterministic pipeline.
-> 
-> **I would love to connect and discuss ideas on how to redesign the multi-agent system to make it robust, parallel, and highly efficient!** If you've solved similar orchestration problems, please open an issue, start a discussion, or reach out.
+> **I would love to connect and discuss ideas on how to redesign this multi-agent system to make it robust, parallel, and highly efficient!** If you have experience with multi-agent orchestration, LLM state management, or asynchronous task queues (like Celery/BullMQ), please open an issue, start a GitHub discussion, or reach out.
 
 ## Features
 
