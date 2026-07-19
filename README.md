@@ -9,7 +9,7 @@
 ## Multi-Agent Architecture Note
 
 > [!NOTE]
-> We originally experimented with a **multi-agent orchestration architecture** to fetch, rank, verify, and summarize articles. However, this decentralized approach was slow, expensive, and ultimately unsuccessful. Currently, the project falls back on a simpler, more deterministic pipeline.
+> I originally experimented with a **multi-agent orchestration architecture** to fetch, rank, verify, and summarize articles. However, this decentralized approach was slow, expensive, and ultimately unsuccessful. Currently, the project falls back on a simpler, more deterministic pipeline.
 > 
 > **I would love to connect and discuss ideas on how to redesign the multi-agent system to make it robust, parallel, and highly efficient!** If you've solved similar orchestration problems, please open an issue, start a discussion, or reach out.
 
