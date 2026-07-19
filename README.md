@@ -4,8 +4,6 @@
 
 **NewsAgent** is a modern, AI‑enhanced news aggregation and summarization platform built with **React**, **Vite**, and a powerful **Python backend**. It automatically fetches the latest articles from multiple sources, uses large language models to generate concise summaries, and presents them in a clean, responsive UI.
 
-![NewsAgent screenshot](https://raw.githubusercontent.com/JayChauhan2/NewsAgent/main/public/screenshot.png)
-
 ## Multi-Agent Architecture Note
 
 This project was originally designed around an autonomous **Multi-Agent Orchestration Architecture** where separate specialized agents coordinated in a cyclic loop (`backend/run_news_cycle.py`) to process news stories.
