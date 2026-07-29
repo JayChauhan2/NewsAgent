@@ -4,6 +4,17 @@
 
 **NewsAgent** is a modern, AI‑enhanced news aggregation and summarization platform built with **React**, **Vite**, and a powerful **Python backend**. It automatically fetches the latest articles from multiple sources, uses large language models to generate concise summaries, and presents them in a clean, responsive UI.
 
+## Screenshots & Interface Preview
+
+| Main News Feed | Donald Trump AI Initiative Article |
+| :---: | :---: |
+| ![News Feed Home](assets/news_feed_home.png) | ![Donald Trump AI Initiative](assets/article_trump.png) |
+
+| Recent Breaking News (Quantum AI) | Multi-Agent Pipeline & Writer Dashboard |
+| :---: | :---: |
+| ![Quantum AI Breakthrough Article](assets/article_recent_news.png) | ![Writers & Agent Dashboard](assets/writers_agent_pipeline.png) |
+
+
 ## Multi-Agent Architecture Note
 
 This project was originally designed around an autonomous **Multi-Agent Orchestration Architecture** where separate specialized agents coordinated in a cyclic loop (`backend/run_news_cycle.py`) to process news stories.

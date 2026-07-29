@@ -3,14 +3,22 @@ const API_BASE_URL = '/api';
 export async function fetchArticles() {
     try {
         const response = await fetch(`${API_BASE_URL}/articles`);
-        if (!response.ok) {
-            throw new Error(`API error: ${response.status}`);
+        if (response.ok) {
+            return await response.json();
         }
-        return await response.json();
     } catch (error) {
-        console.error("Failed to fetch articles:", error);
-        return [];
+        console.warn("API endpoint unavailable, trying static /articles.json fallback", error);
     }
+    
+    try {
+        const fallbackResponse = await fetch('/articles.json');
+        if (fallbackResponse.ok) {
+            return await fallbackResponse.json();
+        }
+    } catch (fallbackError) {
+        console.error("Failed to fetch articles:", fallbackError);
+    }
+    return [];
 }
 
 export async function fetchAssignments() {
