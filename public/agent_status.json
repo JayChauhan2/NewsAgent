@@ -1,30 +1,44 @@
 [
   {
-    "name": "The Watchtower",
-    "role": "Social Monitor",
-    "status": "Idle",
-    "current_assignment": "Scan complete. No new leads found.",
-    "last_updated": "2026-03-28T16:29:44.940373"
+    "name": "Watchtower",
+    "role": "Trend Spotter & Listener",
+    "status": "Active",
+    "current_assignment": "Scraping live telemetry and X/Reddit trends on AI energy infrastructure...",
+    "last_updated": "2026-07-29T00:15:00Z"
   },
   {
-    "name": "The Chief Editor",
+    "name": "Chief Editor",
     "role": "Editor-in-Chief",
-    "status": "Assigning",
-    "current_assignment": "Reviewing scored stories for assignment...",
-    "last_updated": "2026-02-10T06:32:10.836724"
+    "status": "Active",
+    "current_assignment": "Clustering 14 raw breaking leads into assignment tickets...",
+    "last_updated": "2026-07-29T00:15:30Z"
   },
   {
-    "name": "The Investigative Journalist",
-    "role": "Journalist",
-    "status": "Thinking",
-    "current_assignment": "Formulating investigation strategy...",
-    "last_updated": "2026-03-28T16:29:44.941420"
+    "name": "Investigative Journalist",
+    "role": "Deep Research Agent",
+    "status": "Active",
+    "current_assignment": "Synthesizing Quantum-AI satellite telemetry research dossier...",
+    "last_updated": "2026-07-29T00:16:00Z"
   },
   {
-    "name": "The Senior Reporter",
-    "role": "Journalist",
+    "name": "Tech Reporter",
+    "role": "Senior Writer",
+    "status": "Active",
+    "current_assignment": "Drafting White House AI initiative policy breakdown article...",
+    "last_updated": "2026-07-29T00:16:15Z"
+  },
+  {
+    "name": "Fact Checker",
+    "role": "Verification Agent",
+    "status": "Active",
+    "current_assignment": "Validating semiconductor fab supply chain numbers against official records...",
+    "last_updated": "2026-07-29T00:16:30Z"
+  },
+  {
+    "name": "Market Analyst",
+    "role": "Financial Correspondent",
     "status": "Idle",
-    "current_assignment": "Waiting for new assignments...",
-    "last_updated": "2026-03-28T16:29:44.941750"
+    "current_assignment": "Standing by for Q3 semiconductor earnings releases...",
+    "last_updated": "2026-07-29T00:14:00Z"
   }
 ]

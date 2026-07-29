@@ -41,15 +41,22 @@ export async function fetchArticle(id) {
 export async function fetchAgentStatus() {
     try {
         const response = await fetch(`${API_BASE_URL}/agent_status.json`);
-        if (!response.ok) {
-            // Fallback for when file doesn't exist yet
-            return [];
+        if (response.ok) {
+            return await response.json();
         }
-        return await response.json();
     } catch (error) {
-        console.error("Failed to fetch agent status:", error);
-        return [];
+        console.warn("API endpoint unavailable, trying static /agent_status.json fallback", error);
     }
+
+    try {
+        const fallbackResponse = await fetch('/agent_status.json');
+        if (fallbackResponse.ok) {
+            return await fallbackResponse.json();
+        }
+    } catch (err) {
+        console.error("Failed to fetch agent status:", err);
+    }
+    return [];
 }
 
 export async function deleteArticle(id) {
